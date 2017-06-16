@@ -49,7 +49,10 @@ n_val_bands = 100
 output_full_datasets = 1 
 
 # set working directory and change to it
-working_directory = '/Volumes/Snow_02/unbelievably_sheepish/ready/'
+# david's data dir:
+# working_directory = '/Volumes/Snow_02/unbelievably_sheepish/ready/'
+# test in current dir:
+working_directory = '.'
 os.chdir(working_directory)
 
 # load day of year information from lookup table saved as .csv file
@@ -57,7 +60,7 @@ doy_data = np.genfromtxt('np_doy_2000_2015.csv', delimiter=',', dtype=None)
 
 #doy_data = pandas.read_csv('doy_2000_2015.csv', sep=',',header=1)
 
-print doy_data
+print(doy_data)
 full_doy_array = doy_data
 print(full_doy_array)
 
@@ -147,7 +150,7 @@ validation_mask_stack_outname = (working_directory + '/v6_tmscag_validation_mask
 outDs = driver.Create(validation_mask_stack_outname, cols, rows, n_val_bands, GDT_Float32)
 
 if outDs is None:
-    print 'Could not create file'
+    print('Could not create file')
     sys.exit(1)
 
 for out_band_number in range(n_val_bands):
@@ -164,7 +167,7 @@ file_out_path_x = (working_directory + '/v6_tmscag_validation_stack')
 outDs = driver.Create(file_out_path_x, cols, rows, n_val_bands, GDT_Float32)
 
 if outDs is None:
-    print 'Could not create file'
+    print('Could not create file')
     sys.exit(1)
 
 for out_band_number in range(n_val_bands):
@@ -322,7 +325,7 @@ tmscag_validation_predictions_offset_stack = np.zeros((n_val_bands,dimensions[1]
 if output_full_datasets == 1:
    
    # NEW OUTPUT FILE
-   print 'Writing out full interpolated time series cube...'
+   print('Writing out full interpolated time series cube...')
    driver = tmscag_fsca_image.GetDriver()
    file_out_path = (working_directory + '/v6a_interpolation_output')
    outDs = driver.Create(file_out_path, cols, rows, 1553, GDT_Float32)
